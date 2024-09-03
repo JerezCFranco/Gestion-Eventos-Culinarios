@@ -1,0 +1,7 @@
+El archivo ya viene con una lista de Eventos,Participantes,chefs y reseñas, esta listo para ser exportado y
+se creara 1 documento de texto.
+
+Al crear un evento y asignarle la fecha y hora sera con este formato 'dia/mes/año hora:minuto' debe respetarse el formato
+
+Al crear querer exportar un archivo, pedira la fecha en el formato 'año-mes-dia' debe respetarse este formato con los 
+guiones medios(-), la fecha del archivo ya listo es 2000-05-05
