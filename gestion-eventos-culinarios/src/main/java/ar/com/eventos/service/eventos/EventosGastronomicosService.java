@@ -1,5 +1,6 @@
 package ar.com.eventos.service.eventos;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import ar.com.eventos.domain.EventosGastronomicos;
@@ -20,6 +21,10 @@ public interface EventosGastronomicosService {
     void asignarChefAEvento(UUID idEvento, UUID idChef);
 
     EventosGastronomicos buscarEventoPorId(UUID id);
+
+    void listarEventosDisponiblesAPartirDeFecha(LocalDateTime fecha);
+
+    void listarEventosDesdeFechaConEntrada();
 
     
 }

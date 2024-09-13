@@ -10,7 +10,7 @@ import ar.com.eventos.service.menu.MenuService;
 import ar.com.eventos.service.participante.ParticipanteService;
 import ar.com.eventos.service.resena.ResenaService;
 
-public class MenuServiceImpl implements MenuService{
+public class MenuServiceImpl implements MenuService {
 
     private EventosGastronomicosService eventosGastronomicosService;
 
@@ -22,7 +22,9 @@ public class MenuServiceImpl implements MenuService{
 
     private ArchivosEventosService archivosEventosService;
 
-    public MenuServiceImpl(EventosGastronomicosService eventosGastronomicosService, ParticipanteService participanteService, ChefService chefService, ResenaService resenaService, ArchivosEventosService archivosEventosService){
+    public MenuServiceImpl(EventosGastronomicosService eventosGastronomicosService,
+            ParticipanteService participanteService, ChefService chefService, ResenaService resenaService,
+            ArchivosEventosService archivosEventosService) {
         this.eventosGastronomicosService = eventosGastronomicosService;
         this.participanteService = participanteService;
         this.chefService = chefService;
@@ -73,7 +75,8 @@ public class MenuServiceImpl implements MenuService{
                             return;
                         }
 
-                        eventosGastronomicosService.inscribirParticipanteEnEvento(idEventoInscribir, idParticipanteInscribir);
+                        eventosGastronomicosService.inscribirParticipanteEnEvento(idEventoInscribir,
+                                idParticipanteInscribir);
                     } else {
                         System.out.println("Elección invalida.");
                     }
@@ -114,9 +117,8 @@ public class MenuServiceImpl implements MenuService{
                     break;
                 case 5: // Listar Eventos y Participantes
                     System.out.println("Que desea realizar?\n1- Listar todos los participantes ");
-                    System.out.println("2- Listar Participantes de un evento");
-                    System.out.println("3- Listar los Chefs");
-                    System.out.println("4- Listar Eventos");
+                    System.out.println("2- Listar Participantes de un evento\n3- Listar los Chefs");
+                    System.out.println("4- Listar Eventos\n5- Listar Eventos disponibles a partir de una fecha");
                     int eleccionListar = scan.nextInt();
                     scan.nextLine();
                     if (eleccionListar == 1) {
@@ -135,11 +137,13 @@ public class MenuServiceImpl implements MenuService{
                         chefService.mostrarChefs();
                     } else if (eleccionListar == 4) {
                         eventosGastronomicosService.verEventos();
+                    } else if (eleccionListar == 5) {
+                        eventosGastronomicosService.listarEventosDesdeFechaConEntrada();
                     } else {
                         System.out.println("Elección invalida.");
                     }
                     break;
-                case 6:
+                case 6: // Exporta los eventos a un archivo txt
                     System.out.println("Ingrese la fecha para exportar los eventos (formato: AAAA-MM-DD): ");
                     String fechaStr = scan.nextLine();
                     LocalDate fecha;
@@ -159,5 +163,5 @@ public class MenuServiceImpl implements MenuService{
 
         } while (eleccion != 7);
     }
-    
+
 }

@@ -63,12 +63,7 @@ public class EventosGastronomicosServiceImpl implements EventosGastronomicosServ
         if (eleccion == 1) {
             System.out.println("Ingrese el nombre del chef a asignar: ");
             String nombreChef = scan.nextLine();
-            for (Chef chef : organizadorService.getChefs()) {
-                if (chef.getNombre().equalsIgnoreCase(nombreChef)) {
-                    chefAsignado = chef;
-                    break;
-                }
-            }
+            chefAsignado = chefService.getChefByNombre(nombreChef);
             if (chefAsignado == null) {
                 System.out.println("No se encontró un chef con ese nombre.");
             }
@@ -155,6 +150,34 @@ public class EventosGastronomicosServiceImpl implements EventosGastronomicosServ
             return evento.buscarParticipantePorId(idParticipante);
         }
         return null;
+    }
+
+    @Override
+    public void listarEventosDisponiblesAPartirDeFecha(LocalDateTime fecha) {
+        System.out.println("Eventos disponibles a partir de la fecha: " + fecha.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
+        
+        for (EventosGastronomicos evento : organizadorService.getEventos()) {
+            if (evento.getFechaYHora().isAfter(fecha)) {
+                System.out.println("Evento: " + evento.getNombre() + "\nFecha y hora: " 
+                    + evento.getFechaYHora().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm\n")));
+            }
+        }
+    }
+
+    @Override
+    public void listarEventosDesdeFechaConEntrada() {
+        Scanner scan = new Scanner(System.in);
+        
+        System.out.println("Ingrese una fecha y hora, y se le mostrara los eventos proximos (formato: dd/MM/yyyy HH:mm): ");
+        String fechaIngresada = scan.nextLine();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+
+        try {
+            LocalDateTime fecha = LocalDateTime.parse(fechaIngresada, formatter);
+            listarEventosDisponiblesAPartirDeFecha(fecha);
+        } catch (Exception e) {
+            System.out.println("Fecha ingresada inválida, intente nuevamente.");
+        }
     }
 
 }

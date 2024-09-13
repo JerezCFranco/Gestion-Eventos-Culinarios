@@ -55,8 +55,7 @@ public class ResenaServiceImpl implements ResenaService{
         dejarResenaEnEvento(idDelEvento, idDelParticipante, calificacionDelEvento, comentarioDelEvento);
     }
 
-    @Override
-    public void dejarResenaEnEvento(UUID idEvento, UUID idParticipante, int calificacion, String comentario) {
+    private void dejarResenaEnEvento(UUID idEvento, UUID idParticipante, int calificacion, String comentario) {
         EventosGastronomicos evento = eventosGastronomicosService.buscarEventoPorId(idEvento);
         Participante participante = participanteService.buscarParticipantePorId(idParticipante);
 

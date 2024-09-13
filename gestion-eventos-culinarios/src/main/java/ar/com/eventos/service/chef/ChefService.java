@@ -11,4 +11,6 @@ public interface ChefService {
     void mostrarChefs();
 
     Chef buscarChef(UUID id);
+
+    Chef getChefByNombre(String nombre);
 }

@@ -57,5 +57,19 @@ public class ChefServiceImpl implements ChefService{
         System.out.println("No hay ningun chef con ese ID.");
         return null;
     }
+
+    @Override
+    public Chef getChefByNombre(String nombre) {
+        Chef chefAsignado = null;
+        for (Chef chef : organizadorService.getChefs()) {
+            if (chef.getNombre().equalsIgnoreCase(nombre)) {
+                System.out.println("El Chef fue encontrado!.");
+                chefAsignado = chef;
+            }else{
+                System.out.println("El Chef no ha podido ser encontrado.");
+            }
+        };
+        return chefAsignado;
+    }
     
 }
